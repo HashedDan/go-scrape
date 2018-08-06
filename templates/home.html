@@ -11,40 +11,35 @@
 
         <link rel="stylesheet" href="/static/style.css">
         <link rel="stylesheet" href="/static/navigation_bar.css">
+        <style>
+            body {
+                background-color: #3255A4;
+            }
+            .card {
+                height: 90%;
+                margin-top: 5%;
+                overflow: scroll;
+            }
+        </style>
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm">
+        <div class="container" style="height: 100vh">
+            <div class="row" style="height: 100%;">
+                {{ range $site, $data := . }}
+                <div class="col-sm-4">
                     <div class="card">
-                        <h5 class="card-header">Featured</h5>
+                        <h5 class="card-header">{{ $site }}</h5>
                         <div class="card-body">
-                          <h5 class="card-title">Special title treatment</h5>
-                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                            {{ with $data.Links }}
+                            {{ range $key, $value := . }}
+                                <!-- <h5><strong>{{ $key }}</strong>: {{ $value }}</h5> -->
+                                <a href="{{ $key }}">{{ $value }}</a><br><hr>
+                            {{ end }}
+                            {{ end }}
                         </div>
                       </div>
                 </div>
-                <div class="col-sm">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                          <h5 class="card-title">Special title treatment</h5>
-                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-sm">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                          <h5 class="card-title">Special title treatment</h5>
-                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                </div>
+                {{ end }}
             </div>
         </div>
     </body>
